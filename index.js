@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const Distube = require('distube');
 require("dotenv").config()
+
+const generateImage = require("./generateImage")
 const client = new Discord.Client({
     intents: [
         Discord.Intents.FLAGS.GUILDS,
@@ -13,15 +15,21 @@ const client = new Discord.Client({
 const prefix = '!';
 const membercounter = require('./Counters/counter-thanhvien');
 const fs = require('fs');
-const greeting = require("./server greeting");
 const ctay = require("./chia tay");
 
 
 client.commands = new Discord.Collection();
 
+const welcomechannelid = "959276029329952798";
 
 
-
+client.on("guildMemberAdd", async (member) => {
+    const img = await generateImage(member)
+    member.guild.channels.cache.get(welcomechannelid).send({
+        content: `<@${member.id}> Welcome to the server!`,
+        files: [img]
+    })
+})
 
 
 
@@ -33,7 +41,6 @@ for(const file of commandFiles){
 
 client.once('ready', () =>{
     console.log('Ethan Úc Việt Đây 🟢');
-    greeting(client);
     ctay(client);
     membercounter(client);
     client.user.setActivity("Eimi Fukada", {type: 'WATCHING'});
