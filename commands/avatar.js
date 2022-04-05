@@ -9,7 +9,8 @@ module.exports = {
         .setImage(avatarURL)
         .setURL(avatarURL)
         .setTitle(`Đây là Avatar của Đồng Chí ${member.displayName}`)
-        .setColor('RANDOM');
+        .setColor('RANDOM')
+        .setFooter({ text: `Được yêu cầu bởi ${member.user.username}`});
         message.channel.send({ embeds: [embed] });
     }
  }

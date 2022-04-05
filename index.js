@@ -26,7 +26,7 @@ const welcomechannelid = "959276029329952798";
 client.on("guildMemberAdd", async (member) => {
     const img = await generateImage(member)
     member.guild.channels.cache.get(welcomechannelid).send({
-        content: `<@${member.id}> Welcome to the server!`,
+        content: `Chào mừng <@${member.id}> đến với server! 🥰`,
         files: [img]
     })
 })
@@ -40,7 +40,7 @@ for(const file of commandFiles){
 }
 
 client.once('ready', () =>{
-    console.log('Ethan Úc Việt Đây 🟢');
+    console.log(`Đã đăng nhập với tư cách ${client.user.tag}`);
     ctay(client);
     membercounter(client);
     client.user.setActivity("Eimi Fukada", {type: 'WATCHING'});
